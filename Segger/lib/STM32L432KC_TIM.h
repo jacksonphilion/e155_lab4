@@ -1,5 +1,7 @@
 /*********************************************************************
 
+// STM32L432KC_TIM.h
+
 Jackson Philion, Oct.7.2024, jphilion@g.hmc.edu
 For E155 Lab 4, Harvey Mudd College, taught by Prof Josh Brake.
 
@@ -38,18 +40,18 @@ typedef struct
     __IO uint32_t CNT;          /*!< TIM 2 Counter,                         Address offset: 0x24 */
     __IO uint32_t PSC;          /*!< TIM 2 Prescaler,                       Address offset: 0x28 */
     __IO uint32_t ARR;          /*!< TIM 2 Auto-Reload Register,            Address offset: 0x2C */
-    uint32_t      Reserved;     /*!< Reserved,                              Address offset: 0x30 */
+    uint32_t      Reserved0;     /*!< Reserved,                              Address offset: 0x30 */
     __IO uint32_t CCR1;         /*!< TIM 2 Capture Compare Register 1,      Address offset: 0x34 */
     __IO uint32_t CCR2;         /*!< TIM 2 Capture Compare Register 2,      Address offset: 0x38 */
     __IO uint32_t CCR3;         /*!< TIM 2 Capture Compare Register 3,      Address offset: 0x3C */
     __IO uint32_t CCR4;         /*!< TIM 2 Capture Compare Register  4,     Address offset: 0x40 */
-    uint32_t      Reserved;     /*!< Reserved,                              Address offset: 0x44 */
+    uint32_t      Reserved1;     /*!< Reserved,                              Address offset: 0x44 */
     __IO uint32_t DCR;          /*!< TIM 2 DMA Control Register,            Address offset: 0x48 */
     __IO uint32_t DMAR;         /*!< TIM 2 DMA Address for full transfer,   Address offset: 0x4C */
     __IO uint32_t OR1;          /*!< TIM 2 Option Register 1,               Address offset: 0x50 */
-    uint32_t      Reserved;     /*!< Reserved,                              Address offset: 0x54 */
-    uint32_t      Reserved;     /*!< Reserved,                              Address offset: 0x58 */
-    uint32_t      Reserved;     /*!< Reserved,                              Address offset: 0x5C */
+    uint32_t      Reserved2;     /*!< Reserved,                              Address offset: 0x54 */
+    uint32_t      Reserved3;     /*!< Reserved,                              Address offset: 0x58 */
+    uint32_t      Reserved4;     /*!< Reserved,                              Address offset: 0x5C */
     __IO uint32_t OR2;          /*!< TIM 2 Option Register 2,               Address offset: 0x60 */
 } TIM2_TypeDef;
 
@@ -57,13 +59,13 @@ typedef struct
 {
     __IO uint32_t CR1;     /*!< TIM 6 Control Register 1,          Address offset: 0x00 */
     __IO uint32_t CR2;     /*!< TIM 6 Control Register 2,          Address offset: 0x04 */
-    uint32_t      Reserved;     /*!< Reserved,                          Address offset: 0x08 */
+    uint32_t      Reserved0;     /*!< Reserved,                          Address offset: 0x08 */
     __IO uint32_t DIER;    /*!< TIM 6 DMA Interrupt Enable,        Address offset: 0x0C */
     __IO uint32_t SR;      /*!< TIM 6 Status Register,             Address offset: 0x10 */
     __IO uint32_t EGR;     /*!< TIM 6 Event Generation Register,   Address offset: 0x14 */
-    uint32_t      Reserved;     /*!< Reserved,                          Address offset: 0x18 */
-    uint32_t      Reserved;     /*!< Reserved,                          Address offset: 0x1C */
-    uint32_t      Reserved;     /*!< Reserved,                          Address offset: 0x20 */
+    uint32_t      Reserved1;     /*!< Reserved,                          Address offset: 0x18 */
+    uint32_t      Reserved2;     /*!< Reserved,                          Address offset: 0x1C */
+    uint32_t      Reserved3;     /*!< Reserved,                          Address offset: 0x20 */
     __IO uint32_t CNT;     /*!< TIM 6 Counter,                     Address offset: 0x24 */
     __IO uint32_t PSC;     /*!< TIM 6 Prescaler,                   Address offset: 0x28 */
     __IO uint32_t ARR;     /*!< TIM 6 Auto-Reload Register,        Address offset: 0x2C */
@@ -80,4 +82,4 @@ typedef struct
 void initTIM6(); 
 void initTIM2_PWM(uint32_t freq); 
 void delayMillis(uint32_t ms);
-void playNote(uint32_t freq);
+void playNote(uint32_t freq, uint32_t milliseconds);

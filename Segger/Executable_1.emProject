@@ -43,9 +43,7 @@
       project_directory=""
       project_type="Executable"
       target_reset_script="Reset();" />
-    <configuration
-      Name="Debug"
-      c_user_include_directories=".;./libraries;./lib" />
+    <configuration Name="Debug" c_user_include_directories=".;./lib" />
     <folder Name="Script Files">
       <file file_name="STM32L4xx/Scripts/STM32L4xx_Target.js">
         <configuration Name="Common" file_type="Reset Script" />
@@ -53,14 +51,8 @@
     </folder>
     <folder Name="Source Files">
       <configuration Name="Common" filter="c;cpp;cxx;cc;h;s;asm;inc" />
-      <folder
-        Name="libraries"
-        exclude=""
-        filter=""
-        path="../lib"
-        recurse="No" />
-      <file file_name="../lib/e155_lab4.h" />
-      <file file_name="../src/main.c" />
+      <folder Name="lib" exclude="" filter="" path="lib" recurse="No" />
+      <file file_name="src/main.c" />
     </folder>
     <folder Name="System Files">
       <file file_name="SEGGER_THUMB_Startup.s" />

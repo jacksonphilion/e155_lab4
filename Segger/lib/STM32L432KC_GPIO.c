@@ -10,7 +10,7 @@ void pinOutputPWM(){
     I will choose PA5 as it is broken out by the ribbon cable. */
 
     // To set pin PA5 to Alternate Function 1, connecting it to TIM2_CH1, the PWM output.
-    pinModeGPIOA(int 5, GPIO_ALT);
+    pinModeGPIOA(5, GPIO_ALT);
 
     // Set which alternate function is connected – GPIOA_AFRL[23:20] to 0001 for AF1
     GPIOA->AFRL &= (~(0b1111<<20));     // Clear all bits
@@ -21,10 +21,10 @@ void pinOutputPWM(){
     GPIOA->OTYPER &= (~(0b1<<5));
 
     // Set speed to low because that seems okay? GPIOA_OSPEEDR[11:10] clear to 00
-    GPIO->OSPEEDR &= (~(0b11<<10));
+    GPIOA->OSPEEDR &= (~(0b11<<10));
 
     // PWM should be setting our output, so turn off pin 5 PU and PD res's. GPIOA_PUPDR[11:10] clear to 00
-    GPIO->PUPDR &= (~(0b11<<10));
+    GPIOA->PUPDR &= (~(0b11<<10));
 }
 
 

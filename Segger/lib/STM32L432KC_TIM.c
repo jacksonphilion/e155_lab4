@@ -1,5 +1,7 @@
 /*********************************************************************
 
+// STM32L432KC_TIM.c
+
 Jackson Philion, Oct.7.2024, jphilion@g.hmc.edu
 For E155 Lab 4, Harvey Mudd College, taught by Prof Josh Brake.
 
@@ -54,7 +56,7 @@ void initTIM6() {
     TIM6->EGR |= 0b1;           // Set bit 0 to 1
 }
 
-initTIM2_PWM(uint32_t freq) {
+void initTIM2_PWM(uint32_t freq) {
     /* Function to initialize TIM2 in PWM mode, outputting a square wave at
     the given frequency "freq" in hertz. 
     
@@ -100,8 +102,6 @@ initTIM2_PWM(uint32_t freq) {
     }
 }
 
-
-
 void delayMillis(uint32_t ms) {
     /*  */
     initTIM6();                         // Initialize Timer 6 to fun in 1ms loops
@@ -112,8 +112,7 @@ void delayMillis(uint32_t ms) {
     }
 }
 
-void playNote(uint32_t freq, uint32_t milliseconds)
-{
+void playNote(uint32_t freq, uint32_t milliseconds) {
     if (freq>0){
         initTIM2_PWM(freq);                 // turn on PWM at given frequency "freq"
         delayMillis(milliseconds);          // leave the note on for time "milliseconds"

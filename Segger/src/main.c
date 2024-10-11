@@ -9,20 +9,7 @@ This file and
 
 
 #include <stdio.h>
-
-int main(void) {
-    pinOutputPWM();
-    playSong(notes);
-}
-
-void playSong(int songArray){
-    /* This function takes in an array representing a song. The array should be formatted:
-    {  {freq0,milSec0}, {freq1,milSec1}, etc. } */
-    int songLen = sizeof(songArray)/sizeof(songArray[0]);
-    for (i=0, i<songLen, i++){
-        playNote(songArray[i][0], songArray[i][1]);
-    }
-}
+#include <e155_lab4.h>
 
 // lab4_starter.c
 // Fur Elise, E155 Lab 4
@@ -139,5 +126,19 @@ const int notes[][2] = {
 {494,	125},
 {440,	500},
 {  0,	0}};
+
+void playSong(int songArray[][2]){
+    /* This function takes in an array representing a song. The array should be formatted:
+    {  {freq0,milSec0}, {freq1,milSec1}, etc. } */
+    int songLen = sizeof(songArray)/sizeof(songArray[0]);
+    for (int j = 0; j < songLen; j++){
+        playNote(songArray[j][0], songArray[j][1]);
+    }
+}
+
+int main(void) {
+    pinOutputPWM();
+    playSong(notes);
+}
 
 /*************************** End of file ****************************/
