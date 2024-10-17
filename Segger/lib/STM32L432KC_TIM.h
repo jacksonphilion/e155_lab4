@@ -18,6 +18,9 @@ We need to set the:
 • Disable Shadow Buffer – (ARPE) in the TIMx_CR1 register, Bit 7 (0 to disable buffer)
 */
 
+#ifndef STM32L432KC_TIM_H
+#define STM32L432KC_TIM_H
+
 #include <stdint.h>
 
 #define __IO volatile
@@ -83,3 +86,5 @@ void initTIM6();
 void initTIM2_PWM(uint32_t freq); 
 void delayMillis(uint32_t ms);
 void playNote(uint32_t freq, uint32_t milliseconds);
+
+#endif
