@@ -195,8 +195,7 @@ Reset_Handler:
 #if !defined(__NO_SYSTEM_INIT) && !defined(__NO_SYSTEM_CLK_UPDATE)
         .section .init_array, "aw"
         .balign 4
-        //.word   SystemCoreClockUpdate
-        .word   4000000U
+        .word   SystemCoreClockUpdate
 #endif
 
 /*********************************************************************
