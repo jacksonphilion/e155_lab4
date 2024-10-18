@@ -3,13 +3,13 @@
 Jackson Philion, Oct.7.2024, jphilion@g.hmc.edu
 For E155 Lab 4, Harvey Mudd College, taught by Prof Josh Brake.
 
-This file and 
+This file 
 
 *********************************************************************/
 
 
 #include <stdio.h>
-#include <e155_lab4.h>
+#include "e155_lab4.h"
 
 // lab4_starter.c
 // Fur Elise, E155 Lab 4
@@ -127,17 +127,29 @@ const int notes[][2] = {
 {440,	500},
 {  0,	0}};
 
+/********************************************************
+NOTE: I had to comment out line 198 of System Files > STM32L4xx_Startup.s
+********************************************************/
+
 void playSong(int songArray[][2]){
     /* This function takes in an array representing a song. The array should be formatted:
     {  {freq0,milSec0}, {freq1,milSec1}, etc. } */
-    int songLen = sizeof(songArray)/sizeof(songArray[0]);
-    for (int j = 0; j < songLen; j++){
+    
+    // Start Clock, with built in PLL enable
+    configureClock();
+
+
+
+    // Enable PWM output on Pin PA5 (defined in the function)
+    pinOutputPWM();
+    int j = 0;
+    while (songArray[j][1]!=0) {
         playNote(songArray[j][0], songArray[j][1]);
+        j++;
     }
 }
 
 int main(void) {
-    pinOutputPWM();
     playSong(notes);
 }
 

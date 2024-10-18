@@ -56,6 +56,8 @@ typedef struct {
 
 void pinModeGPIOA(int pin, int function);
 
+void pinOutputPWM(void);
+
 int digitalReadGPIOA(int pin);
 
 void digitalWriteGPIOA(int pin, int val);

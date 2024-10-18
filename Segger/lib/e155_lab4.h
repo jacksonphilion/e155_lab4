@@ -8,10 +8,15 @@ For Harvey Mudd College, E155, Professor Joshua Brake */
 
 // Note that only the .c files are included, as they each #include their own .h
 
-#include "STM32L432KC_FLASH.c"
+#ifndef E155_LAB4_H
+#define E155_LAB4_H
 
-#include "STM32L432KC_GPIO.c"
+#include "STM32L432KC_FLASH.h"
 
-#include "STM32L432KC_RCC.c"
+#include "STM32L432KC_GPIO.h"
 
-#include "STM32L432KC_TIM.c"
+#include "STM32L432KC_RCC.h"
+
+#include "STM32L432KC_TIM.h"
+
+#endif
