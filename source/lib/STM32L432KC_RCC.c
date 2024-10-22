@@ -72,27 +72,3 @@ void configureClock_AndTIM2_6(){
 
     // We never Set PCKL1 1x or 2x multiplier before it gets to TIM2,3,6,7
 }
-
-// Back when they were separate functions...
-/*
-void configureTIM2_6(){
-    // This function assumes a running SYSCLK and enables the CLK to TIM2 and TIM6.
-    // Note that this function divides SYSCLK by a factor of 4, in our case 80 -> 20 MHz.
-
-    // Set AHB Prescaler – RCC_CFGR[7:4] to 1000 to be divided by 2
-    RCC->CFGR &= (~(0b1111 << 4));        // Clear all bits
-    RCC->CFGR |= (0b1000 << 4);           // Set bits to 100
-
-    // Set APB1 Prescaler – RCC_CFGR[10:8] to 100 to be divided by 2
-    RCC->CFGR &= (~(0b111<<8));         // Clear all bits
-    RCC->CFGR |= (0b100<<8);            // Set bits to 100
-
-    // Enable clock to TIM2 and TIM6 – RCC_APB1ENR1 bits 0 and 4 set to 1 
-    RCC->APB1ENR1 |= 0b1;               // Set bit 0 to 1
-    RCC->APB1ENR1 |= (0b1<<4);          // Set bit 4 to 1
-
-    // NOTE ABOVE LINES CURRENTLY BROKEN - Not setting bits...
-
-
-    // We never Set PCKL1 1x or 2x multiplier before it gets to TIM2,3,6,7
-} */

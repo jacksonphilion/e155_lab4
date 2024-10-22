@@ -3,17 +3,25 @@
 Jackson Philion, Oct.7.2024, jphilion@g.hmc.edu
 For E155 Lab 4, Harvey Mudd College, taught by Prof Josh Brake.
 
-This file 
+This file encodes the top level functions which play the whole song,
+play a note, and hold the songs (Fur Elise, shortTest, longTest, and
+imperialMarch). 
+
+It is critical that this file be used with a folder "lib" within the
+source code, as a subfolder. This should contain e155_lab4.h, which
+calls the 8 other files necessary to make this file run.
+
+Note that a single variable defined within Startup requires the CMSIS
+folders to be available in SEGGER. However, this code and the called
+header files make no use of CMSIS.
+
+See my full write up of this laboratory on my portfolio website here:
+https://jacksonphilion.github.io/hmc-e155-portfolio/
 
 *********************************************************************/
 
-
 #include <stdio.h>
 #include "lib/e155_lab4.h"
-
-// lab4_starter.c
-// Fur Elise, E155 Lab 4
-// Updated Fall 2024
 
 // Pitch in Hz, duration in ms
 const int furElise[][2] = {
@@ -152,6 +160,7 @@ const int longTest[][2] = {
 {0,0}
 };
 
+//Shorter test song
 const int shortTest[][2] = {
 {500,1000},
 {330,1000},
@@ -185,10 +194,9 @@ const int shortTest[][2] = {
 #define A5f 831
 #define A5 880
 
+// Custom Imperial March, see imperialMarch.txt in notesAndExtras for more
 int imperialMarch[][2] = {
-
 // First Section
-
 {A4, 500},
 {A4, 500},    
 {A4, 500},
@@ -286,101 +294,6 @@ int imperialMarch[][2] = {
 {A4, 650},  
 
 {0, 0}};
-
-
-/*
-int imperialMarch[][2] = {
-    {A4, 500},    // Start of Row 1
-    {A4, 500},
-    {A4, 500},
-    {F4, 350},
-    {C5, 150},     //____________
-    {A4, 500},
-    {F4, 350},
-    {C5, 150},
-    {A4, 650},       // End of first row
-    {0,  500},
-    {E5, 500},    // Start of Row 2
-    {E5, 500},
-    {E5, 500},
-    {F5, 350},
-    {C5, 150},     //___________
-    {A4f, 500},
-    {F4, 350},
-    {C5, 150},
-    {A4, 650},       
-    {0,  500},    //___________FIRST --> SECOND SECTION
-    {A5, 500},
-    {A4, 300},
-    {A4, 150},
-    {A5, 500},
-    {A5f, 325},
-    {G5, 175},     // End of Second Row
-    {G5f, 125}, // Start of Row 3
-    {F5, 125},
-    {G5f, 250},
-    {0,325},
-    {E5f, quarter},
-    {D5, 500},
-    {D5f, eighth},
-    {0, quarter},     //__________
-    {C5, sixteenth},
-    {B4, sixteenth},
-    {C5, sixteenth},
-    {F4, sixteenth},
-    {A4f, quarter},
-    {F4, eighth},
-    {A4f, eighth},
-    {0, quarter},     // End of Third Row
-    {C5, quarter},    // Start of Row 4
-    {A4, eighth},
-    {C5, eighth},
-    {E5, half},
-    {A5, quarter},
-    {A4, eighth},
-    {A4, eighth},
-    {A5, quarter},
-    {A5f, eighth},
-    {G5, eighth},
-    {G5f, sixteenth},
-    {F5, sixteenth},
-    {G5f, sixteenth},
-    {B4f, sixteenth},
-    {E5f, quarter},
-    {D5, eighth},
-    {D5f, eighth},
-    {0, quarter},
-    {0,0}
-};
-
-int imperialTest[][2] = {
-    {A4, 500},    // Start of Row 1
-    {A4, 500},
-    {A4, 500},
-    {F4, 350},
-    {C5, 150},     //____________
-    {A4, 500},
-    {F4, 350},
-    {C5, 150},
-    {A4, 650},       // End of first row
-    {0,  500},
-    {E5, 500},    // Start of Row 2
-    {E5, 500},
-    {E5, 500},
-    {F5, 350},
-    {C5, 150},     //___________
-    {A4f, 500},
-    {F4, 350},
-    {C5, 150},
-    {A4, 650},       //___________
-    {0,  500},
-    {0,0}};
-
-*/
-
-/********************************************************
-NOTE: I had to comment out line 198 of System Files > STM32L4xx_Startup.s
-********************************************************/
 
 void playNote(uint32_t freq, uint32_t milliseconds) {
     if (freq>0){
