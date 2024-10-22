@@ -1,7 +1,8 @@
 Jackson Philion, Oct.3.2024, jphilion@g.hmc.edu
 
-This repository contains the code for Lab 4 of E155 at Harvey Mudd College, taught by Prof Josh Brake. The full write-up may be found on my portfolio website [here]
-(https://jacksonphilion.github.io/hmc-e155-portfolio/labs/lab4/lab4.html).
+This repository contains the code for Lab 4 of E155 at Harvey Mudd College, taught by Prof Josh Brake. The full write-up may be found on my portfolio website here:
+https://jacksonphilion.github.io/hmc-e155-portfolio/labs/lab4/lab4.html
+
 The `source` folder contains all custom libraries and the main.c file
 The 'MCU_Segger' folder contains the actual SEGGER project with refs to `source`
 The `notesAndExtras` folder contains any additional notes, images, etc
