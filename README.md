@@ -1,4 +1,4 @@
-Jackson Philion, Oct.3.2024, jphilion@g.hmc.edu
+Jackson Philion, Oct.22.2024, jphilion@g.hmc.edu
 
 **Brief Description**\
 This repository contains the code for Lab 4 of E155 at Harvey Mudd College, taught by Prof Josh Brake. The full write-up may be found on my portfolio website here:
