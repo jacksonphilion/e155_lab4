@@ -41,7 +41,7 @@ void initTIM6() {
     // Set the top of the counter value – TIM6_ARR[15:0] set to 0000000000001010
     // Set the top of the counter value to 10, dividing the signal again, giving a final delay output of 1ms total
     TIM6->ARR &= (~(0b1111111111111111));           // Clear bits 15:0
-    TIM6->ARR |= 0b0000000000001010;                // Set bits to intended counter top
+    TIM6->ARR |= 0b0000000000010011;                // Set bits to intended counter top
 
     // Make sure Counter is at zero – TIM6_CNT[15:0], clear bits
     TIM6->CNT &= (~(0b1111111111111111));   // Clear bits 15:0

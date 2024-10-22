@@ -56,13 +56,14 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="11" y="29" useTextEdit="1" folds0="130,154" path="../source/main.c" left="0" selected="1" top="9" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="36" y="73" useTextEdit="1" path="../source/lib/STM32L432KC_TIM.c" left="0" top="56" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="29" y="410" useTextEdit="1" folds0="130,154" path="../source/main.c" left="0" selected="1" top="364" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="28" useTextEdit="1" path="../source/lib/STM32L432KC_TIM.c" left="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="17" useTextEdit="1" path="../source/lib/STM32L432KC_RCC.c" left="0" top="9" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="36" y="80" useTextEdit="1" path="../source/lib/STM32L432KC_RCC.h" left="0" top="48" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="36" y="80" useTextEdit="1" path="../source/lib/STM32L432KC_RCC.h" left="0" top="42" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="27" useTextEdit="1" path="../source/lib/STM32L432KC_GPIO.c" left="0" top="5" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="20" useTextEdit="1" path="../source/lib/STM32L432KC_GPIO.h" left="0" top="15" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="20" useTextEdit="1" path="../source/lib/STM32L432KC_GPIO.h" left="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="228" useTextEdit="1" path="STM32L4xx/Source/STM32L4xx_Startup.s" left="0" top="225" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" path="../source/lib/e155_lab4.h" left="0" top="0" codecName="Default"/>
  </Files>
  <EMStudioWindow activeProject="take2" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
