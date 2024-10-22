@@ -16,7 +16,7 @@ This file
 // Updated Fall 2024
 
 // Pitch in Hz, duration in ms
-const int notes[][2] = {
+const int furElise[][2] = {
 {659,	125},
 {623,	125},
 {659,	125},
@@ -157,6 +157,227 @@ const int shortTest[][2] = {
 {330,1000},
 {0,0}};
 
+// NOTE: These notes may have incorrect sharp and flat names, I didn't realize until the end.
+#define A3 220
+#define B3f 233
+#define B3 247
+#define C4 262
+#define D4f 277
+#define D4 294
+#define E4f 311
+#define E4 330
+#define F4 349
+#define G4f 370
+#define G4 392
+#define A4f 415
+#define A4 440
+#define A4s 455
+#define B4f 466
+#define B4 494
+#define C5 523
+#define D5f 554
+#define D5 587
+#define E5f 622
+#define E5 659
+#define F5 698
+#define G5f 741
+#define G5 784
+#define A5f 831
+#define A5 880
+
+int imperialMarch[][2] = {
+
+// First Section
+
+{A4, 500},
+{A4, 500},    
+{A4, 500},
+{F4, 350},
+{C5, 150},  
+{A4, 500},
+{F4, 350},
+{C5, 150},
+{A4, 650},
+
+{0, 500},
+
+{E5, 500},
+{E5, 500},
+{E5, 500},  
+{F5, 350},
+{C5, 150},
+{A4f, 500},
+{F4, 350},
+{C5, 150},
+{A4, 650},
+
+{0, 500},
+
+// Second Section
+
+{A5, 500},
+{A4, 300},
+{A4, 150},
+{A5, 500},
+{A5f, 325},
+{G5, 175},
+{G5f, 125},
+{F5, 125},    
+{G5f, 250},
+
+{0, 325},
+
+{A4s, 250},
+{E5f, 500},
+{D5, 325},  
+{D5f, 175},  
+{C5, 125},  
+{B4f, 125},  
+{C5, 250},  
+
+{0, 350},
+
+//Variant 1
+
+{F4, 250},  
+{A4f, 500},  
+{F4, 350},  
+{A4, 125},
+{C5, 500},
+{A4, 375},  
+{C5, 125},
+{E5, 650},
+
+{0, 500},
+
+// Repeat Second Section
+
+{A5, 500},
+{A4, 300},
+{A4, 150},
+{A5, 500},
+{A5f, 325},
+{G5, 175},
+{G5f, 125},
+{F5, 125},    
+{G5f, 250},
+
+{0, 325},
+
+{A4s, 250},
+{E5f, 500},
+{D5, 325},  
+{D5f, 175},  
+{C5, 125},  
+{B4f, 125},  
+{C5, 250},  
+
+{0, 350},
+
+//Then Variant 2
+
+{F4, 250},  
+{A4f, 500},  
+{F4, 375},  
+{C5, 125},
+{A4, 500},  
+{F4, 375},  
+{C5, 125},
+{A4, 650},  
+
+{0, 0}};
+
+
+/*
+int imperialMarch[][2] = {
+    {A4, 500},    // Start of Row 1
+    {A4, 500},
+    {A4, 500},
+    {F4, 350},
+    {C5, 150},     //____________
+    {A4, 500},
+    {F4, 350},
+    {C5, 150},
+    {A4, 650},       // End of first row
+    {0,  500},
+    {E5, 500},    // Start of Row 2
+    {E5, 500},
+    {E5, 500},
+    {F5, 350},
+    {C5, 150},     //___________
+    {A4f, 500},
+    {F4, 350},
+    {C5, 150},
+    {A4, 650},       
+    {0,  500},    //___________FIRST --> SECOND SECTION
+    {A5, 500},
+    {A4, 300},
+    {A4, 150},
+    {A5, 500},
+    {A5f, 325},
+    {G5, 175},     // End of Second Row
+    {G5f, 125}, // Start of Row 3
+    {F5, 125},
+    {G5f, 250},
+    {0,325},
+    {E5f, quarter},
+    {D5, 500},
+    {D5f, eighth},
+    {0, quarter},     //__________
+    {C5, sixteenth},
+    {B4, sixteenth},
+    {C5, sixteenth},
+    {F4, sixteenth},
+    {A4f, quarter},
+    {F4, eighth},
+    {A4f, eighth},
+    {0, quarter},     // End of Third Row
+    {C5, quarter},    // Start of Row 4
+    {A4, eighth},
+    {C5, eighth},
+    {E5, half},
+    {A5, quarter},
+    {A4, eighth},
+    {A4, eighth},
+    {A5, quarter},
+    {A5f, eighth},
+    {G5, eighth},
+    {G5f, sixteenth},
+    {F5, sixteenth},
+    {G5f, sixteenth},
+    {B4f, sixteenth},
+    {E5f, quarter},
+    {D5, eighth},
+    {D5f, eighth},
+    {0, quarter},
+    {0,0}
+};
+
+int imperialTest[][2] = {
+    {A4, 500},    // Start of Row 1
+    {A4, 500},
+    {A4, 500},
+    {F4, 350},
+    {C5, 150},     //____________
+    {A4, 500},
+    {F4, 350},
+    {C5, 150},
+    {A4, 650},       // End of first row
+    {0,  500},
+    {E5, 500},    // Start of Row 2
+    {E5, 500},
+    {E5, 500},
+    {F5, 350},
+    {C5, 150},     //___________
+    {A4f, 500},
+    {F4, 350},
+    {C5, 150},
+    {A4, 650},       //___________
+    {0,  500},
+    {0,0}};
+
+*/
+
 /********************************************************
 NOTE: I had to comment out line 198 of System Files > STM32L4xx_Startup.s
 ********************************************************/
@@ -177,6 +398,8 @@ void playSong(int songArray[][2]){
     // Looping logic which actually plays a song
     int j = 0;
     while (!((songArray[j][1]==0)&(songArray[j][0]==0))) {
+        // Add delay between similar notes for the imperial march
+        if ((j!=0)&(songArray[j][0]==songArray[j-1][0])) {delayMillis(15);}
         playNote(songArray[j][0], songArray[j][1]);
         j++;
     }
@@ -191,7 +414,8 @@ int main(void) {
   pinOutputPWM();
 
   while (1) {
-    playSong(notes);
+    playSong(imperialMarch);
+    delayMillis(2000);
   }
 }
 
