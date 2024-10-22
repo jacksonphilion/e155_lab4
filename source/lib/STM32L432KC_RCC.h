@@ -78,6 +78,10 @@ typedef struct
 ///////////////////////////////////////////////////////////////////////////////
 
 void configurePLL(void);
-void configureClock(void);
+void configureClock_AndTIM2_6(void);
+
+// Old prototypes back when these were their own fxns
+// void configureClock(void);
+// void configureTIM2_6(void);
 
 #endif

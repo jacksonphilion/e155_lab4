@@ -3,26 +3,13 @@
 Jackson Philion, Oct.7.2024, jphilion@g.hmc.edu
 For E155 Lab 4, Harvey Mudd College, taught by Prof Josh Brake.
 
-This file and 
+This file 
 
 *********************************************************************/
 
 
 #include <stdio.h>
-
-int main(void) {
-    pinOutputPWM();
-    playSong(notes);
-}
-
-void playSong(int songArray){
-    /* This function takes in an array representing a song. The array should be formatted:
-    {  {freq0,milSec0}, {freq1,milSec1}, etc. } */
-    int songLen = sizeof(songArray)/sizeof(songArray[0]);
-    for (i=0, i<songLen, i++){
-        playNote(songArray[i][0], songArray[i][1]);
-    }
-}
+#include "lib/e155_lab4.h"
 
 // lab4_starter.c
 // Fur Elise, E155 Lab 4
@@ -139,5 +126,73 @@ const int notes[][2] = {
 {494,	125},
 {440,	500},
 {  0,	0}};
+
+// 20 second test song that flops back and forth
+const int longTest[][2] = {
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{0,0}
+};
+
+const int shortTest[][2] = {
+{500,1000},
+{330,1000},
+{0,0}};
+
+/********************************************************
+NOTE: I had to comment out line 198 of System Files > STM32L4xx_Startup.s
+********************************************************/
+
+void playNote(uint32_t freq, uint32_t milliseconds) {
+    if (freq>0){
+        initTIM2_PWM(freq);                 // turn on PWM at given frequency "freq"
+        delayMillis(milliseconds);          // leave the note on for time "milliseconds"
+        initTIM2_PWM(0b0);                  // turn off PWM and TIM2 by passing in freq=0
+    }
+    else {delayMillis(milliseconds);}
+}
+
+void playSong(int songArray[][2]){
+    /* This function takes in an array representing a song. The array should be formatted:
+    {  {freq0,milSec0}, {freq1,milSec1}, etc. } */
+
+    // Looping logic which actually plays a song
+    int j = 0;
+    while (!((songArray[j][1]==0)&(songArray[j][0]==0))) {
+        playNote(songArray[j][0], songArray[j][1]);
+        j++;
+    }
+}
+
+int main(void) {
+  // Start Clock, with built in PLL enable
+  // Also, enable SYSCLK path out to TIM 2,3,6,7
+  configureClock_AndTIM2_6();
+
+  // Enable PWM output on Pin PA5 (defined in the function)
+  pinOutputPWM();
+
+  while (1) {
+    playSong(notes);
+  }
+}
 
 /*************************** End of file ****************************/

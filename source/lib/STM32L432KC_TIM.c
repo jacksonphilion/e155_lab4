@@ -1,5 +1,7 @@
 /*********************************************************************
 
+// STM32L432KC_TIM.c
+
 Jackson Philion, Oct.7.2024, jphilion@g.hmc.edu
 For E155 Lab 4, Harvey Mudd College, taught by Prof Josh Brake.
 
@@ -31,10 +33,10 @@ void initTIM6() {
     // Make sure that we can generate update events on counter overflow (UDIS) – TIM6_CR1[1] clear to 0
     TIM6->CR1 &= (~(0b1<<1));   // Set bit 1
 
-    // Set Prescaler to (2,000 - 1), to get 20MHz CLK down to generate a 100µs delay.
-    // To do this – TIM6_PSC[15:0] set to 0000011111001111  (which is 1,999)
+    // Set Prescaler to (250 - 1), to get 2.5MHz CLK down to 10kHz, a 100µs delay.
+    // To do this – TIM6_PSC[15:0] set to 0000000011111001  (which is 249)
     TIM6->PSC &= (~(0b1111111111111111));           // Clear bits 15:0
-    TIM6->PSC |= 0b0000011111001111;                // Set bits to intended prescaler
+    TIM6->PSC |= 0b0000000011111001;                // Set bits to intended prescaler
 
     // Set the top of the counter value – TIM6_ARR[15:0] set to 0000000000001010
     // Set the top of the counter value to 10, dividing the signal again, giving a final delay output of 1ms total
@@ -54,37 +56,50 @@ void initTIM6() {
     TIM6->EGR |= 0b1;           // Set bit 0 to 1
 }
 
-initTIM2_PWM(uint32_t freq) {
+void initTIM2_PWM(uint32_t givenFreq) {
     /* Function to initialize TIM2 in PWM mode, outputting a square wave at
     the given frequency "freq" in hertz. 
     
-    If you input a frequency of 0, this function should instead turn off  */
+    If you input a frequency of 0, this function should instead turn off 
+    
+    Timer 2 should be getting 2.5 MHz, from SYSCLK 10 with some scalers to get here.
+    Let counterTop = 2500000/freq */
 
     // Make sure TIM2 is off as we make changes – TIM2_CR1[0] clear to 0
     TIM2->CR1 &= ~0b1;          // Clear the 0th bit
-    if (freq>0) {
+    // Make sure Capture Compare 1 is disabled as we make changes
+    TIM2->CCER &= ~0b1;         // Clear the 0th bit
+
+    if (givenFreq>0) {
+        uint32_t freq = givenFreq/2;
         // Determine frequency with TIM2_ARR[31:0] register
         TIM2->ARR &= 0b0;       // Clear all bits of ARR
-        TIM2->ARR |= freq;      // Set ARR=freq
+        TIM2->ARR |= (2500000/freq);      // Set ARR=freq
 
         // Determine duty cycle with TIM2_CCRx
         TIM2->CCR1 &= 0b0;
-        TIM2->CCR1 |= (freq/2);
+        TIM2->CCR1 |= ((2500000/freq)/2);
 
+        // Ensure CH1 is configured as pure output: TIM2_CCMR1[1:0] clear to 00
+        TIM2->CCMR1 &= ~0b11;
+
+        // NOTE 1: These bits can not be modified as long as LOCK level 3 has been programmed
+        // (LOCK bits in TIMx_BDTR register) and CC1S=00 (the channel is configured in output).
+        // I DON't THINK THAT TIM2 HAS BDTR REGISTER (only TIM1 and 15/16 maybe)
+
+        // To select PWM mode, the third bit of the mode is up here and should be 0
+        TIM2->CCMR1 &= (~(0b1<<16));    // Clear the 16th bit to 0
         // Select PWM mode with TIMx_CCMRx[6:4] to either 110 (PWM mode 1) or ‘111 (PWM mode 2)
-        TIM2->CCMR1 &= (~(0b111<<4));
-        TIM2->CCMR1 |= (0b110<<4);
+        TIM2->CCMR1 &= (~(0b111<<4));   // Clear the 4th thru 6th bit to 0
+        TIM2->CCMR1 |= (0b110<<4);      // Set bit 5 and 6 for PWM mode 1
 
-        // enable the corresponding preload register in capture/compare – TIM2_CCMR1[3] set to 1 
+        // OC1PE: enable the corresponding preload register in capture/compare – TIM2_CCMR1[3] set to 1 
         TIM2->CCMR1 |= (0b1<<3);
 
-        // emable the auto-reload preload register by setting TIM2_CR1[7] 
+        // ARPE: enable the auto-reload preload register by setting TIM2_CR1[7] 
         TIM2->CR1 |= (0b1<<7);
 
         // OCx polarity is software programmable using the CCxP bit in the TIMx_CCER register as active high or low
-
-        // Enable OC1 output with the CC1E bit in TIM2_CCER[0] (set to 1)
-        TIM2->CCER |= (0b1);            // Bit 0 to 1
 
         // CMS bits in the TIMx_CR1[6:5] determines edge alignment of the PWM wave, 00 for edge aligned
         TIM2->CCR1 &= (~(0b11<<5));     // Clear just in case
@@ -92,32 +107,27 @@ initTIM2_PWM(uint32_t freq) {
         // DIR bit in the TIMx_CR1[4] register is 0 for upcounting mode
         TIM2->CR1 &= (~(0b1<<4));       // Clear just in case
 
+        // Make sure prescaler is (x + 1) 0 so that we don't divide the frequency: TIM2->PSC[15:0]
+        TIM2->PSC &= 0b0;
+
         // Generate update event with TIMx_EGR
         TIM2->EGR |= 0b1;
+
+        // Enable OC1 output with the CC1E bit in TIM2_CCER[0] (set to 1)
+        TIM2->CCER |= (0b1);            // Bit 0 to 1
 
         // Turn the timer back on
         TIM2->CR1 |= 0b1;          // Clear the 0th bit
     }
 }
 
-
-
 void delayMillis(uint32_t ms) {
     /*  */
-    initTIM6();                         // Initialize Timer 6 to fun in 1ms loops
+    initTIM6();                         // Initialize Timer 6 to run in 1ms loops
     TIM6->SR &= (~(0b1));                   // Ensure flag is down
     for(int i = 0; i<ms; i++) {
-        while (~(TIM6->SR & 0b1)) {}        // While the flag is down, wait
+        while (!(TIM6->SR & 0b1)) {}        // While the flag is down, wait
         TIM6->SR &= (~(0b1));               // After flag is up, reset it down
     }
 }
 
-void playNote(uint32_t freq, uint32_t milliseconds)
-{
-    if (freq>0){
-        initTIM2_PWM(freq);                 // turn on PWM at given frequency "freq"
-        delayMillis(milliseconds);          // leave the note on for time "milliseconds"
-        initTIM2_PWM(0b0);                  // turn off PWM and TIM2 by passing in freq=0
-    }
-    else {delayMillis(milliseconds);}
-}
