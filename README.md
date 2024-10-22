@@ -4,7 +4,9 @@ This repository contains the code for Lab 4 of E155 at Harvey Mudd College, taug
 https://jacksonphilion.github.io/hmc-e155-portfolio/labs/lab4/lab4.html
 
 The `source` folder contains all custom libraries and the main.c file
+
 The 'MCU_Segger' folder contains the actual SEGGER project with refs to `source`
+
 The `notesAndExtras` folder contains any additional notes, images, etc
 
 References I used throughout this lab:
