@@ -1,0 +1,114 @@
+Jackson Philion, Oct.21.2024, jphilion@g.hmc.edu
+for E155, at Harvey Mudd College, taught by Prof Joshua Brake
+
+This file gives credit to Profe-Electro on Youtube, from whom I got the following
+list of notes and times (in milliseconds) which encodes the song:
+/////////////  The Imperial March, by John Williams  ////////////////////////////
+
+You can find the youtube video I referenced here, titled:
+"Arduino + Star Wars Imperial March (Buzzer/Piezo)"
+https://www.youtube.com/watch?v=83xHpj3PstI
+
+His code used an arduino interface. Using find and replace, I converted his
+original code (found pasted in the youtube video's description) into the C
+array format that I used in my main.c file. The edited code is below:
+
+// First Section
+
+{A4, 500},
+{A4, 500},    
+{A4, 500},
+{F4, 350},
+{C5, 150},  
+{A4, 500},
+{F4, 350},
+{C5, 150},
+{A4, 650},
+
+{0, 500},
+
+{E5, 500},
+{E5, 500},
+{E5, 500},  
+{F5, 350},
+{C5, 150},
+{A4f, 500},
+{F4, 350},
+{C5, 150},
+{A4, 650},
+
+{0, 500},
+
+// Second Section
+
+{A5, 500},
+{A4, 300},
+{A4, 150},
+{A5, 500},
+{A5f, 325},
+{G5, 175},
+{G5f, 125},
+{F5, 125},    
+{G5f, 250},
+
+{0, 325},
+
+{A4s, 250},
+{E5f, 500},
+{D5, 325},  
+{D5f, 175},  
+{C5, 125},  
+{B4f, 125},  
+{C5, 250},  
+
+{0, 350},
+
+//Variant 1
+
+{F4, 250},  
+{A4f, 500},  
+{F4, 350},  
+{A4, 125},
+{C5, 500},
+{A4, 375},  
+{C5, 125},
+{E5, 650},
+
+{0, 500},
+
+// Repeat Second Section
+
+{A5, 500},
+{A4, 300},
+{A4, 150},
+{A5, 500},
+{A5f, 325},
+{G5, 175},
+{G5f, 125},
+{F5, 125},    
+{G5f, 250},
+
+{0, 325},
+
+{A4s, 250},
+{E5f, 500},
+{D5, 325},  
+{D5f, 175},  
+{C5, 125},  
+{B4f, 125},  
+{C5, 250},  
+
+{0, 350},
+
+//Then Variant 2
+
+{F4, 250},  
+{A4f, 500},  
+{F4, 375},  
+{C5, 125},
+{A4, 500},  
+{F4, 375},  
+{C5, 125},
+{A4, 650},  
+
+{0, 0}
