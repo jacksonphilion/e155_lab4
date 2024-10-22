@@ -9,8 +9,8 @@ The 'MCU_Segger' folder contains the actual SEGGER project with refs to `source`
 
 The `notesAndExtras` folder contains any additional notes, images, etc
 
-References I used throughout this lab:
-Learn to Read Sheet Music: https://www.musicnotes.com/blog/how-to-read-sheet-music/
-Imperial March Sheet Music: https://www.sheetmusicdirect.com/en-US/se/ID_No/445631/Product.aspx
-Imperial March Arduino Buzzer: https://www.youtube.com/watch?v=83xHpj3PstI
+References I used throughout this lab:\
+Learn to Read Sheet Music: https://www.musicnotes.com/blog/how-to-read-sheet-music/\
+Imperial March Sheet Music: https://www.sheetmusicdirect.com/en-US/se/ID_No/445631/Product.aspx\
+Imperial March Arduino Buzzer: https://www.youtube.com/watch?v=83xHpj3PstI\
   ^^NOTE:  I reference this material more fully under notesAndExtras > imperialMarch.txt
