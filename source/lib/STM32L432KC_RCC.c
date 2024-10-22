@@ -47,16 +47,12 @@ void configureClock_AndTIM2_6(){
     // Configure and turn on PLL
     configurePLL();
 
-    // Select PLL as clock source
-    // NOTE This works!
-
+    // Select PLL as clock source and wait for it to be on
     RCC->CFGR |= (0b11 << 0);
     while(!((RCC->CFGR >> 2) & 0b11));
 
-    // NOTE -- BELOW lines won't set bits
-
-    /* The following lines of code enable the clock heading out to the peripherals.
-    Input clock 10 MHz, output should be 2.5 MHz  */
+    /* The following lines of code enable the clock heading out to target peripherals.
+    System clock 10 MHz, output to peripherals should be 2.5 MHz  */
 
     // Set AHB Prescaler – RCC_CFGR[7:4] to 1000 to be divided by 2
     RCC->CFGR &= (~(0b1111 << 4));        // Clear all bits
@@ -70,8 +66,8 @@ void configureClock_AndTIM2_6(){
     RCC->APB1ENR1 |= 0b1;               // Set bit 0 to 1
     RCC->APB1ENR1 |= (0b1<<4);          // Set bit 4 to 1
 
-
-
+    // Enable overall SYSCLK sent over AHB2 by setting RCC_AHB2ENR[0] to 1 for GPIOA Port Clock Enable
+    RCC->AHB2ENR |= 0b1;
 
     // We never Set PCKL1 1x or 2x multiplier before it gets to TIM2,3,6,7
 }

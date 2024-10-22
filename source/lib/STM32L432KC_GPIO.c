@@ -27,7 +27,6 @@ void pinOutputPWM(){
     GPIOA->PUPDR &= (~(0b11<<10));
 }
 
-
 ////////////////////////  GPIO A Function Bank  /////////////////////////////
 
 void pinModeGPIOA(int pin, int function) {

@@ -127,6 +127,36 @@ const int notes[][2] = {
 {440,	500},
 {  0,	0}};
 
+// 20 second test song that flops back and forth
+const int longTest[][2] = {
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{500,1000},
+{330,1000},
+{0,0}
+};
+
+const int shortTest[][2] = {
+{500,1000},
+{330,1000},
+{0,0}};
+
 /********************************************************
 NOTE: I had to comment out line 198 of System Files > STM32L4xx_Startup.s
 ********************************************************/
@@ -143,25 +173,26 @@ void playNote(uint32_t freq, uint32_t milliseconds) {
 void playSong(int songArray[][2]){
     /* This function takes in an array representing a song. The array should be formatted:
     {  {freq0,milSec0}, {freq1,milSec1}, etc. } */
-    
-    // Start Clock, with built in PLL enable
-    configureClock_AndTIM2_6();
 
-    // Enable SYSCLK path out to TIM 2,3,6,7
-    // configureTIM2_6();
-
-    // Enable PWM output on Pin PA5 (defined in the function)
-    // NOTE RCC_AHB2ENR[0] must be set to 1 for GPIOA Port Clock Enable
-    pinOutputPWM();
+    // Looping logic which actually plays a song
     int j = 0;
-    while (songArray[j][1]!=0) {
+    while (!((songArray[j][1]==0)&(songArray[j][0]==0))) {
         playNote(songArray[j][0], songArray[j][1]);
         j++;
     }
 }
 
 int main(void) {
+  // Start Clock, with built in PLL enable
+  // Also, enable SYSCLK path out to TIM 2,3,6,7
+  configureClock_AndTIM2_6();
+
+  // Enable PWM output on Pin PA5 (defined in the function)
+  pinOutputPWM();
+
+  while (1) {
     playSong(notes);
+  }
 }
 
 /*************************** End of file ****************************/
