@@ -1,5 +1,6 @@
 // STM32L432KC_GPIO.c
 // Source code for GPIO functions
+// See main.c for more
 
 #include "STM32L432KC_GPIO.h"
 

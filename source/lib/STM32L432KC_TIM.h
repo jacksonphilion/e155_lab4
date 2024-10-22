@@ -1,13 +1,6 @@
-/*********************************************************************
-
 // STM32L432KC_TIM.h
-
-Jackson Philion, Oct.7.2024, jphilion@g.hmc.edu
-For E155 Lab 4, Harvey Mudd College, taught by Prof Josh Brake.
-
-This file and 
-
-*********************************************************************/
+// Header file for TIM functions
+// See main.c for more
 
 /*
 We need to set the:

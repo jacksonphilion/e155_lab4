@@ -1,5 +1,6 @@
 // STM32L432KC_RCC.c
 // Source code for RCC functions
+// See main.c for more
 
 #include "STM32L432KC_RCC.h"
 

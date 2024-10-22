@@ -1,5 +1,6 @@
 // STM32L432KC_FLASH.h
 // Header for FLASH functions
+// See main.c for more
 
 #ifndef STM32L4_FLASH_H
 #define STM32L4_FLASH_H

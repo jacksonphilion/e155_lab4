@@ -1,5 +1,6 @@
 // STM32L432KC_FLASH.c
 // Source code for FLASH functions
+// See main.c for more
 
 #include "STM32L432KC_FLASH.h"
 
